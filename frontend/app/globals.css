@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply overflow-x-hidden;
+}
+
+@layer base {
+  /* :root {
+    --background: 0 0% 10.59%;
+    --foreground: 0 0% 85.1%;
+    --muted: 0 0% 85.1%;
+    --muted-foreground: 0 0% 10.59%;
+    --primary: 34.38 79.34% 52.55%;
+    --primary-foreground: 0 0% 10.59%;
+    --secondary: 216.32 31.15% 23.92%;
+    --secondary-foreground: 0 0% 85.1%;
+    --popover: 0 0% 85.1%;
+    --popover-foreground: 0 0% 10.59%;
+    --input: 0 0% 85.1%;
+    --accent: 16.24 100% 50%;
+    --accent-foreground: 0 0% 10.59%;
+    --card: 0 0% 85.1%;
+    --card-foreground: 0 0% 10.59%;
+    --border: 0 0% 85.1%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+    --ring: 0 0% 85.1%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 10.59%;
+    --sidebar-foreground: 0 0% 85.1%;
+    --sidebar-primary: 34.38 79.34% 52.55%;
+    --sidebar-primary-foreground: 0 0% 10.59%;
+    --sidebar-accent: 16.24 100% 50%;
+    --sidebar-accent-foreground: 0 0% 10.59%;
+    --sidebar-border: 0 0% 85.1%;
+    --sidebar-ring: 0 0% 85.1%;
+  } */
+
+  :root {
+    --background: 34 10% 6%;
+    --foreground: 34 0% 90%;
+    --card: 34 0% 6%;
+    --card-foreground: 34 0% 90%;
+    --popover: 34 10% 5%;
+    --popover-foreground: 34 0% 90%;
+    --primary: 34 79.3% 52.5%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 34 10% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: -4 10% 15%;
+    --muted-foreground: 34 0% 60%;
+    --accent: -4 10% 15%;
+    --accent-foreground: 34 0% 90%;
+    --destructive: 0 50% 30%;
+    --destructive-foreground: 34 0% 90%;
+    --border: 34 20% 18%;
+    --input: 34 20% 18%;
+    --ring: 34 79.3% 52.5%;
+    --radius: 0.5rem;
+    --sidebar-background: 34 10% 6%;
+    --sidebar-foreground: 34 0% 90%;
+    --sidebar-primary: 34 79.3% 52.5%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: -4 10% 15%;
+    --sidebar-accent-foreground: 34 0% 90%;
+    --sidebar-border: 34 20% 18%;
+    --sidebar-ring: 34 79.3% 52.5%;
+  }
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

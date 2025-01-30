@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - '3001:3001'
+    environment:
+      - PORT=3001
+      - DATABASE_URL="mongodb+srv://belyakov329:dH9uDpev2HaF451k@cluster0.rm4ou.mongodb.net/csgo"
+      - STEAM_API_KEY="8S3ZFVJ4SX4AA8YR"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
