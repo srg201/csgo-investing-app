@@ -6,12 +6,12 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     ports:
-      - "3001:3001"
+      - '3001:3001'
     environment:
       - PORT=3001
-      - DATABASE_URL=mongodb+srv://belyakov329:dH9uDpev2HaF451k@cluster0.rm4ou.mongodb.net/csgo?retryWrites=true&w=majority
-      - STEAM_API_KEY=8S3ZFVJ4SX4AA8YR
-      - CLIENT_URL=http://localhost:3000
+      - DATABASE_URL=
+      - STEAM_API_KEY=
+      - CLIENT_URL=
     volumes:
       - .:/usr/src/app
     networks:
