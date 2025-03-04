@@ -6,7 +6,9 @@ import { CasesModule } from './cases/cases.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
-
+import { NewsModule } from './news/news.module';
+import { AiModule } from './ai/ai.module';
+import { RssModule } from './rss/rss.module';
 @Module({
   imports: [
     SteamMarketApiModule,
@@ -17,7 +19,10 @@ import { ScheduleModule } from '@nestjs/schedule';
       envFilePath: '.env',
       cache: true,
     }),
-    ScheduleModule.forRoot()
+    ScheduleModule.forRoot(),
+    NewsModule,
+    AiModule,
+    RssModule,
   ],
   controllers: [AppController],
   providers: [AppService],

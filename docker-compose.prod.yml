@@ -10,22 +10,28 @@ services:
       - ./backend/.env
     ports:
       - "3001:3001"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
     networks:
       - app-network
+    command: ["npm", "run", "start:prod"]
 
   frontend:
     container_name: frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile.prod
-    env_file:
-      - ./frontend/.env.production
+    # env_file:
+    #   - ./frontend/.env.production
+    environment:
+      - API_URL=http://backend:3001
     ports:
       - "3000:3000"
-    depends_on:
-      - backend
     networks:
       - app-network
+    depends_on:
+      - backend
 
   nginx:
     container_name: nginx
@@ -35,7 +41,6 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - backend
       - frontend
     networks:
       - app-network

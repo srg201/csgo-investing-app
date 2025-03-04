@@ -3,6 +3,8 @@ import React from "react";
 import { ICase } from "@/types/cases.types";
 import { CaseCard } from "./case-card";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { NotFound } from "../not-found";
+import { ErrorBoundary } from "../error-boundary";
 
 interface CasesListProps {
   cases: ICase[];
@@ -27,13 +29,16 @@ const CasesList = ({ cases, error }: CasesListProps) => {
           ))}
       </ul>
       {error ? (
-        <li className="col-span-full text-2xl text-red-500 h-full w-full flex items-center justify-center">
-          There was an error fetching cases. Please try again later.
-        </li>
+        <ErrorBoundary
+          error={"Failed to fetch cases"}
+          description="Please try again later or contact support"
+        />
       ) : cases.length === 0 ? (
-        <li className="col-span-full text-2xl text-primary h-full w-full flex items-center justify-center">
-          No cases found
-        </li>
+        <NotFound
+          hasLink={false}
+          description="Try adjusting your filters or search criteria to find more cases"
+          title="There are no cases"
+        />
       ) : null}
     </>
   );
