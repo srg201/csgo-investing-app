@@ -4,19 +4,16 @@ A comprehensive web application for tracking and analyzing CS:GO case investment
 
 ## Features
 
-- **Real-time Price Tracking**: Monitor current prices of all CS:GO cases
 - **Investment ROI Calculator**: Calculate potential returns on investment
 - **Market Listings Counter**: Track the number of available listings
 - **Advanced Filtering**: Filter cases by various parameters
-- **Price History**: View historical price data and trends
-- **Multiple Currency Support**: Track prices in different currencies
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 
 ## Technologies
 
 - Frontend: Next.js with TypeScript
 - Styling: Tailwind CSS + Shadcn/ui
-- API Integration: Steam Market API
+- API Integration: Steam Market API, OpenAI API
 
 ## Getting Started
 

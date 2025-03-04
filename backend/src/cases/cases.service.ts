@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { FiltersDto } from './dto/filters.dto';
 
@@ -31,28 +31,43 @@ export class CasesService {
       orderBy.listings = sortType;
     }
 
-    return this.prisma.case.findMany({
-      where: {
-        name: {
-          contains: search,
-          mode: 'insensitive',
+    try {
+      return this.prisma.case.findMany({
+        where: {
+          name: {
+            contains: search,
+            mode: 'insensitive',
+          },
         },
-      },
-      orderBy,
-    });
+        orderBy,
+      });
+    } catch (error) {
+      console.error('Error getting cases: 🔴 ', error);
+      throw new BadRequestException('Cannot get cases');
+    }
   }
 
   async getUpdatedTime() {
-    return this.prisma.case.findFirst({
-      orderBy: {
-        updatedAt: 'desc',
-      },
-    });
+    try {
+      return this.prisma.case.findFirst({
+        orderBy: {
+          updatedAt: 'desc',
+        },
+      });
+    } catch (error) {
+      console.error('Error getting updated time: 🔴 ', error);
+      throw new BadRequestException('Cannot get updated time');
+    }
   }
 
   async getCaseById(id: string) {
-    return this.prisma.case.findUnique({
-      where: { id },
-    });
+    try {
+      return this.prisma.case.findUnique({
+        where: { id },
+      });
+    } catch (error) {
+      console.error('Error getting case by id: 🔴 ', error);
+      throw new BadRequestException('Cannot get case with id: ' + id);
+    }
   }
 }

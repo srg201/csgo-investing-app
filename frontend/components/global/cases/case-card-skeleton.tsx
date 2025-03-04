@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import React from "react";
-import { Skeleton } from "./ui/skeleton";
+import { Skeleton } from "../../ui/skeleton";
 
 interface Props {
   className?: string;
@@ -17,10 +17,8 @@ export const CaseCardSkeleton: React.FC<Props> = ({ className }) => {
       <div className="flex justify-center flex-col relative">
         <Skeleton className="w-full h-52 object-contain bg-accent" />
         <div className="grid grid-cols-2 gap-4 justify-between mt-4 mb-4">
-          <Skeleton className="h-16 flex flex-col gap-1 items-center bg-accent p-2 rounded-lg">
-          </Skeleton>
-          <Skeleton className="h-16 flex flex-col gap-1 items-center bg-accent p-2 rounded-lg">
-          </Skeleton>
+          <Skeleton className="h-16 flex flex-col gap-1 items-center bg-accent p-2 rounded-lg"></Skeleton>
+          <Skeleton className="h-16 flex flex-col gap-1 items-center bg-accent p-2 rounded-lg"></Skeleton>
         </div>
       </div>
       <div className="grid grid-cols-4 gap-2">

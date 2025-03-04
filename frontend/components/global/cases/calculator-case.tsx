@@ -3,7 +3,7 @@
 import { cn, formatCurrency } from "@/lib/utils";
 import { ICase } from "@/types/cases.types";
 import React, { useCallback } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../../ui/button";
 import { removeFromCalculator } from "@/lib/actions/cases.actions";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -27,11 +27,11 @@ export const CalculatorCase: React.FC<Props> = ({ className, ...caseData }) => {
   return (
     <div
       className={cn(
-        "flex flex-col items-center gap-2 p-4 rounded-lg bg-accent",
+        "flex flex-col items-center gap-2 p-4 rounded-lg bg-muted overflow-hidden",
         className
       )}
     >
-      <h1 className="font-bold text-xl">{name}</h1>
+      <h1 className="font-semibold text-xl line-clamp-1">{name}</h1>
       <div className="relative">
         <Image
           width={300}

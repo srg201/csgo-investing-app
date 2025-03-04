@@ -28,3 +28,16 @@ model Case {
   updatedAt         DateTime  @updatedAt
   createdAt         DateTime  @default(now())
 }
+
+
+model News {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  content String
+  imageUrl String?
+  imageUploadthingKey String?
+  source String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  timeToRead Int
+}

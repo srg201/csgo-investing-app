@@ -10,7 +10,7 @@ import { useFilters } from "@/store/filters";
 import { ICase } from "@/types/cases.types";
 import { Scroll, TrendingDown, TrendingUp } from "lucide-react";
 import React, { useCallback, useMemo } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../../ui/button";
 import { toast } from "sonner";
 import { addToCalculator } from "@/lib/actions/cases.actions";
 import Image from "next/image";
@@ -57,7 +57,7 @@ export const CaseCard: React.FC<CaseCardProps> = ({
     >
       <CardHeader className="relative">
         <CardTitle
-          className={cn("font-medium whitespace-nowrap text-xl text-center")}
+          className={cn("font-semibold line-clamp-1 text-xl text-center")}
         >
           {caseData.name}
         </CardTitle>

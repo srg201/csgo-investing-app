@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { SteamMarketApiService } from './steam-market-api.service';
 
@@ -7,8 +7,8 @@ import { SteamMarketApiService } from './steam-market-api.service';
 export class SteamMarketApiController {
   constructor(private readonly steamMarketApiService: SteamMarketApiService) {}
 
-  // @Get()
-  // getCases() {
-  //   return this.steamMarketApiService.handleCron();
-  // }
+  @Get()
+  getCases() {
+    return this.steamMarketApiService.handleCron();
+  }
 }

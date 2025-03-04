@@ -1,27 +1,43 @@
-import { CalculatorCase } from "@/components/calculator-case";
+import { CalculatorCase } from "@/components/global/cases/calculator-case";
 import { cn, formatCurrency } from "@/lib/utils";
 import { getCasesFromCalculator } from "@/lib/actions/cases.actions";
 import { ICase } from "@/types/cases.types";
-
-export const revalidate = 60;
-export const dynamicParams = true; // or false, to 404 on unknown paths
+import { NotFound } from "@/components/global/not-found";
 
 const Page = async () => {
-  const cases = await getCasesFromCalculator();
+  const { status, data: cases, error } = await getCasesFromCalculator();
+
+  if (status === 500) {
+    return <div>{error}</div>;
+  }
+
+  // Early return if no cases
+  if (status === 404 || !cases?.length) {
+    return (
+      <NotFound
+        title="No cases found."
+        description="You have not added any cases yet."
+        linkText="Add cases"
+        linkHref="/?sortBy=investingRoi&sortType=asc&investType=1year"
+      />
+    );
+  }
+
   const totalPrice = cases.reduce(
-    (acc: number, item: ICase & { quantity: number }) =>
-      acc + item.price * item.quantity,
+    (acc, item) => acc + item.price * item.quantity,
     0
   );
 
   const calculateWeightedRoi = (
-    roiField:
+    roiField: keyof Pick<
+      ICase,
       | "investingRoi1M"
       | "investingRoi6M"
       | "investingRoiWeek"
       | "investingRoiYear"
+    >
   ) => {
-    return cases.reduce((acc: number, item: ICase & { quantity: number }) => {
+    return cases.reduce((acc, item) => {
       const itemValue = item.price * item.quantity;
       const weightedRoi = (itemValue / totalPrice) * item[roiField];
       return acc + weightedRoi;
@@ -30,10 +46,10 @@ const Page = async () => {
 
   return (
     <div className="p-4">
-      <div className="mt-7">
-        <h4 className="mb-7 font-bold text-xl">Added cases</h4>
+      <div className="">
+        <h4 className="mb-7 heading-2">Added cases</h4>
         <ul className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-7 mt-4">
-          {cases.map((item: ICase & { quantity: number }) => (
+          {cases.map((item) => (
             <CalculatorCase key={item.id} {...item} />
           ))}
         </ul>

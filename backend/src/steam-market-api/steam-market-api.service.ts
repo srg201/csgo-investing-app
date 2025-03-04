@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Cron } from '@nestjs/schedule';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import axios, { AxiosInstance } from 'axios';
 import { differenceInCalendarDays, subDays } from 'date-fns';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -24,16 +24,18 @@ export class SteamMarketApiService implements OnModuleInit {
     });
   }
 
-  @Cron('0 0 * * 1,4,6')
+  @Cron('0 0 * * 1,4,7')
   async handleCron() {
-    console.log('Every 3 day Cron Job Started');
+    console.log(
+      'Fetching cases from Steam API... Monday, Thursday, Sunday at 00:00',
+    );
     try {
       const cases = await this.fetchCasesFromSteamApi();
       const processedCases = await this.processCases(cases);
+      console.log('Cases updated successfully');
       return processedCases;
     } catch (error) {
       console.error('Failed to update case data:', error);
-      throw new BadRequestException('Failed to fetch cases from Steam API');
     }
   }
 

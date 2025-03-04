@@ -1,22 +1,21 @@
-import CasesList from "@/components/cases-list";
 import { getCases } from "@/lib/actions/cases.actions";
 import { ICaseFilters } from "@/types/cases.types";
-import { Filters } from "@/widgets/filters";
+import { Filters } from "@/components/global/filters";
+import CasesList from "@/components/global/cases/cases-list";
 
-export const revalidate = 60;
-export const dynamicParams = true; // or false, to 404 on unknown paths
+export const revalidate = 3600; // invalidate every hour
 
 export default async function Home({
   searchParams,
 }: {
   searchParams: Promise<ICaseFilters>;
 }) {
-  const { data: cases, error } = await getCases(await searchParams);
+  const { status, data: cases } = await getCases(await searchParams);
 
   return (
     <div className="py-4 pr-4">
       <Filters />
-      <CasesList cases={cases} error={error} />
+      <CasesList cases={cases || []} error={status !== 200 ? true : false} />
     </div>
   );
 }
