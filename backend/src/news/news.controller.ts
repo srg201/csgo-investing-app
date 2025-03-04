@@ -8,10 +8,10 @@ import { FiltersDto } from './dto/filters.dto';
 export class NewsController {
   constructor(private readonly newsService: NewsService) {}
 
-  // @Post()
-  // async generateNews() {
-  //   return this.newsService.generateNews();
-  // }
+  @Post()
+  async generateNews() {
+    return this.newsService.generateNews();
+  }
 
   @Get()
   async getNews(@Query() filters: FiltersDto) {

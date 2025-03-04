@@ -140,7 +140,7 @@ body {
 }
 
 .animate-scroll {
-  animation: scroll 25s infinite linear;
+  animation: scroll 50s infinite linear;
 }
 
 .pause {

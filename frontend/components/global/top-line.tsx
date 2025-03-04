@@ -30,16 +30,22 @@ export const TopLine: React.FC<Props> = async ({}) => {
               <span
                 className={cn(
                   "text-primary",
-                  Number(item.investingRoiYear) < 0
+                  Number(item.investingRoiWeek) === 0
+                    ? "text-muted-foreground"
+                    : Number(item.investingRoiWeek) < 0
                     ? "text-red-500"
                     : "text-green-500"
                 )}
               >
-                {Number(item.investingRoiYear) > 0 ? "+" : "-"}
+                {Number(item.investingRoiWeek) === 0
+                  ? ""
+                  : Number(item.investingRoiWeek) > 0
+                  ? "+"
+                  : "-"}
                 {new Intl.NumberFormat("en-US", {
                   style: "percent",
                   maximumFractionDigits: 2,
-                }).format(Math.abs(Number(item.investingRoiYear)) / 100)}
+                }).format(Math.abs(Number(item.investingRoiWeek)) / 100)}
               </span>
             </li>
           ))}
